@@ -27,6 +27,12 @@ public final class MapXYZ extends JavaPlugin implements Listener {
     public static BananaTypeFont asciiFont;
     public static MapXYZ instance;
 
+    public static void onConfigLoad() {
+        for (World world : Bukkit.getWorlds()) {
+            world.setGameRule(GameRule.REDUCED_DEBUG_INFO, Config.enableReducedDebugInfo);
+        }
+    }
+
     @Override
     public void onEnable() {
         instance = this;
@@ -39,11 +45,7 @@ public final class MapXYZ extends JavaPlugin implements Listener {
             throw new RuntimeException(e);
         }
         getServer().getPluginManager().registerEvents(this, this);
-        if (Config.enableReducedDebugInfo) {
-            for (World world : Bukkit.getWorlds()) {
-                world.setGameRule(GameRule.REDUCED_DEBUG_INFO, true);
-            }
-        }
+        this.getCommand("mapxyz").setExecutor(new MapXYZCommand());
     }
 
     @Override

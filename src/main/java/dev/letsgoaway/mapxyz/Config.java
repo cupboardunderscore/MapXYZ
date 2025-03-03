@@ -34,6 +34,8 @@ public class Config {
         if (config.contains("use-eye-level-position", true)) {
             useEyeLevelPosition = config.getBoolean("use-eye-level-position");
         }
+
+        MapXYZ.onConfigLoad();
     }
 
     private static void saveValues() {
@@ -63,5 +65,10 @@ public class Config {
         }
         // and save the values again so that if any new values are added in an update it will be default but other settings are user preference
         saveValues();
+    }
+
+    public static void reload() {
+        MapXYZ.instance.reloadConfig();
+        init();
     }
 }
