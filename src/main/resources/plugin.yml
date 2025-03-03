@@ -1,0 +1,6 @@
+name: MapXYZ
+version: '1.0'
+main: dev.letsgoaway.mapxyz.MapXYZ
+api-version: '1.21'
+author: LetsGoAway
+description: 'A plugin that shows XYZ coordinates on maps, like the Legacy Console edition of Minecraft.'
