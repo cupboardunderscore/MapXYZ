@@ -5,10 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.MapMeta;
-import org.bukkit.map.MapCanvas;
-import org.bukkit.map.MapPalette;
-import org.bukkit.map.MapRenderer;
-import org.bukkit.map.MapView;
+import org.bukkit.map.*;
 import org.jetbrains.annotations.NotNull;
 
 public class PosRenderer extends MapRenderer {
@@ -46,6 +43,13 @@ public class PosRenderer extends MapRenderer {
                 canvas.setPixelColor(x, y, canvas.getBasePixelColor(x, y));
             }
         }
+
+        if (!Config.enableXYZDisplay) {
+            return;
+        }
+
+        PlayerCursorRenderer.renderAll(player, canvas, map);
+
         /*
          this is for item frames, unfortunately the position is still visible
          if you are holding the same map of id in your hand but that's the best we can do atm
@@ -87,8 +91,7 @@ public class PosRenderer extends MapRenderer {
         Location pos;
         if (Config.useEyeLevelPosition) {
             pos = player.getEyeLocation();
-        }
-        else {
+        } else {
             pos = player.getLocation();
         }
         canvas.drawText(0, 0, MapXYZ.asciiFont, "§" + color + ";X: " + pos.getBlockX() + ", Y: " + pos.getBlockY() + ", Z: " + pos.getBlockZ());

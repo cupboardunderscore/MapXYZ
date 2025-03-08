@@ -1,3 +1,5 @@
+# If true, show XYZ on map
+enable-xyz-display: true
 # If true, players will get an empty map when they first join the server.
 enable-starting-map: true
 # If true, maps will scale at 1:8 (Level 3/4) by default when a map is created.
@@ -5,6 +7,9 @@ use-legacy-console-default-zoom: true
 # Enables the reducedDebugInfo game rule on all worlds
 # This option hides position info in the Debug menu (F3)
 enable-reduced-debug-info: true
+# Enable locator maps, similar idea to the one on Bedrock Edition
+# Shows other player's markers on maps
+enable-locator-maps: true
 # Make the XYZ display position show the eye level position instead of
 # the players feet level. This matches Legacy Console Edition but may cause confusion
 use-eye-level-position: false
