@@ -38,17 +38,22 @@ public class PosRenderer extends MapRenderer {
 
     @Override
     public void render(@NotNull MapView map, @NotNull MapCanvas canvas, @NotNull Player player) {
+        int ymax = 10;
+        if (Config.playersonitemframes)
+        {
+            ymax = 127;
+        }
         for (int x = 0; x < 127; x++) {
-            for (int y = 0; y < 10; y++) {
+            for (int y = 0; y < ymax; y++) {
                 canvas.setPixelColor(x, y, canvas.getBasePixelColor(x, y));
             }
         }
 
+        PlayerCursorRenderer.renderAll(player, canvas, map);
+
         if (!Config.enableXYZDisplay) {
             return;
         }
-
-        PlayerCursorRenderer.renderAll(player, canvas, map);
 
         /*
          this is for item frames, unfortunately the position is still visible

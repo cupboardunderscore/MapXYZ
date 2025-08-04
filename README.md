@@ -29,6 +29,10 @@ enable-locator-maps: true
 # Make the XYZ display position show the eye level position instead of
 # the players feet level. This matches Legacy Console Edition but may cause confusion
 use-eye-level-position: false
+# show players on maps inside of item frames
+# barelly works lol
+# requires enable-locator-maps to also be true
+players-on-item-frames: false
 ```
 
 ## Commands

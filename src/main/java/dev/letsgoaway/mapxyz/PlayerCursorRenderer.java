@@ -6,6 +6,8 @@ import org.bukkit.map.*;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
+import java.io.File;
+import javax.imageio.ImageIO;
 
 @SuppressWarnings("deprecation")
 public class PlayerCursorRenderer {
@@ -24,8 +26,35 @@ public class PlayerCursorRenderer {
 
         byte d = calculateRotation(player);
 
+        if (x < -62 || x > 62 || z < -62 || z > 62)
+        {
+            return;
+        }
+
+
         // Nether marker type matches Bedrock Edition locator maps
         canvas.getCursors().addCursor(new MapCursor(clampMapCoordinate(x), clampMapCoordinate(z), d, map.getWorld().getEnvironment().equals(World.Environment.NETHER) ? NETHER_MARKER_TYPE : MARKER_TYPE, true, player.getName()));
+        if (Config.playersonitemframes)
+        {
+            try
+            {
+                canvas.drawImage(Math.round(x) + 62, Math.round(z) + 62, ImageIO.read(MapXYZ.instance.getResource("test.png")));
+            }
+            catch(Exception e)
+            {
+                System.out.println("error");
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if ((i == 0 || i == 2) && (j == 0 || j == 2))
+                    {
+                        canvas.setPixelColor(Math.round(x) + 62 + i, Math.round(z) + 62 + j, canvas.getBasePixelColor(Math.round(x) + 62 + i, Math.round(z) + 62 + j));
+                    }
+                }
+            }
+        }
     }
 
     private static byte clampMapCoordinate(float coordinate) {

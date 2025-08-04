@@ -18,6 +18,8 @@ public class Config {
     public static boolean enableLocatorMaps = true;
 
     public static boolean useEyeLevelPosition = false;
+
+    public static boolean playersonitemframes = false;
     //endregion
 
     private static FileConfiguration config;
@@ -47,6 +49,10 @@ public class Config {
             useEyeLevelPosition = config.getBoolean("use-eye-level-position");
         }
 
+        if (config.contains("players-on-item-frames", true)) {
+            playersonitemframes = config.getBoolean("players-on-item-frames");
+        }
+
         MapXYZ.onConfigLoad();
     }
 
@@ -57,6 +63,7 @@ public class Config {
         config.set("enable-reduced-debug-info", enableReducedDebugInfo);
         config.set("enable-locator-maps", enableLocatorMaps);
         config.set("use-eye-level-position", useEyeLevelPosition);
+        config.set("players-on-item-frames", playersonitemframes);
         try {
             config.save(MapXYZ.instance.getDataFolder().toPath().resolve("config.yml").toFile());
         } catch (IOException e) {

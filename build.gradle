@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'dev.letsgoaway'
-version = '1.1'
+version = '1.2'
 
 repositories {
     mavenCentral()
@@ -48,7 +48,7 @@ tasks {
 processResources {
     def props = [version: version]
     inputs.properties props
-    filteringCharset 'UTF-8'
+    filteringCharset = 'UTF-8'
     filesMatching('plugin.yml') {
         expand props
     }
